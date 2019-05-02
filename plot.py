@@ -6,22 +6,25 @@ import os
 os.system("g++ c.cpp")
 os.system("./a.out")
 
+
+
 pinocho = np.loadtxt("pinocho.dat")
 x=np.linspace(0,200,len(pinocho))
+a=np.linspace(1,len(pinocho[0]),len(pinocho[0]))
+plt.figure(figsize=(20,10))
+plt.subplot(121)
 
-plt.figure()
-f,(ax1, ax2) = plt.subplots(1, 2, sharey=True)
-ax1.plot(x,pinocho)
-ax1.set_ylabel('Indice Y')
-ax1.set_xlabel('Indice x')
-ax1.set_xlim([0,200])
-ax1.set_ylim([0,200])
+plt.imshow(pinocho)
+plt.colorbar(label="Temperatura")
+plt.ylabel("Indice T")
+plt.xlabel("Indice X")
 
-ax2.plot(x,pinocho)
-ax2.set_ylabel('Temperatura')
-ax2.set_xlabel('Indice x')
-ax2.set_xlim([0,200])
-ax2.set_ylim([0,200])
+plt.subplot(122)
+plt.plot(a,pinocho[0])
+plt.plot(a,pinocho[-1])
+plt.ylabel("Temperatura")
+plt.xlabel("Indice X")
+plt.legend()
 
 plt.savefig("graficas.png")
 
